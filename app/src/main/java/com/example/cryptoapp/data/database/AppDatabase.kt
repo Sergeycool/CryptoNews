@@ -1,17 +1,21 @@
-package com.example.cryptoapp.database
+package com.example.cryptoapp.data.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.cryptoapp.pojo.CoinPriceInfo
+import com.example.cryptoapp.data.DataConstants
+import com.example.cryptoapp.data.database.dao.CoinPriceInfoDao
+import com.example.cryptoapp.data.model.CoinPriceInfo
 
-@Database(entities = [CoinPriceInfo::class], version = 1, exportSchema = false)
+@Database(entities = [CoinPriceInfo::class],
+          version = DataConstants.DATABASE_VERSION,
+          exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     companion object {
 
         private var db: AppDatabase? = null
-        private const val DB_NAME = "main.db"
+        private const val DB_NAME = DataConstants.DATABASE_NAME
         private val LOCK = Any()
 
         fun getInstance(context: Context): AppDatabase {
