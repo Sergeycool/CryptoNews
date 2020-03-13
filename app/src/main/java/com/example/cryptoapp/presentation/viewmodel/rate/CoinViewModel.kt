@@ -1,22 +1,20 @@
-package com.example.cryptoapp.presentation.viewmodel
+package com.example.cryptoapp.presentation.viewmodel.rate
 
 import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.example.cryptoapp.data.database.AppDatabase
 import com.example.cryptoapp.data.model.CoinPriceInfo
 import com.example.cryptoapp.data.model.CoinPriceInfoRawData
 import com.example.cryptoapp.data.remote.ApiFactory
+import com.example.cryptoapp.toolchain.mvvmbase.BaseViewModel
 import com.google.gson.Gson
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
-class CoinViewModel(application: Application) : AndroidViewModel(application) {
+class CoinViewModel(application: Application) : BaseViewModel() {
 
     private val db = AppDatabase.getInstance(application)
-    private val compositeDisposable = CompositeDisposable()
 
     val priceList = db.coinPriceInfoDao().getPriceList()
 
@@ -29,7 +27,7 @@ class CoinViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun loadData() {
-        val disposable = ApiFactory.apiService.getTopCoinsInfo(limit = 50)
+        disposables.add(ApiFactory.apiService.getTopCoinsInfo(limit = 50)
             .map { it.data?.map { it.coinInfo?.name }?.joinToString(",") }
             .flatMap { ApiFactory.apiService.getFullPriceList(fSyms = it) }
             .map { getPriceListFromRawData(it) }
@@ -42,13 +40,10 @@ class CoinViewModel(application: Application) : AndroidViewModel(application) {
                 Log.d("TEST_OF_LOADING_DATA", "Success: $it")
             }, {
                 Log.d("TEST_OF_LOADING_DATA", "Failure: ${it.message}")
-            })
-        compositeDisposable.add(disposable)
+            }))
     }
 
-    private fun getPriceListFromRawData(
-        coinPriceInfoRawData: CoinPriceInfoRawData
-    ): List<CoinPriceInfo> {
+    private fun getPriceListFromRawData(coinPriceInfoRawData: CoinPriceInfoRawData): List<CoinPriceInfo> {
         val result = ArrayList<CoinPriceInfo>()
         val jsonObject = coinPriceInfoRawData.coinPriceInfoJsonObject ?: return result
         val coinKeySet = jsonObject.keySet()
@@ -64,10 +59,5 @@ class CoinViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
         return result
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        compositeDisposable.dispose()
     }
 }
