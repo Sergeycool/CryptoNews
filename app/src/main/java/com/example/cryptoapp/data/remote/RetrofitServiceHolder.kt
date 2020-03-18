@@ -1,12 +1,12 @@
 package com.example.cryptoapp.data.remote
 
-import com.example.cryptoapp.data.DataConstants.Companion.CRYPTO_NEWS_BASE_URL
-import com.example.cryptoapp.data.remote.api.ApiService
+import com.example.cryptoapp.data.DataConstants.CRYPTO_NEWS_BASE_URL
+import com.example.cryptoapp.data.remote.api.CryptoNewsApiService
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-object ApiFactory {
+object RetrofitServiceHolder {
 
     private val retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
@@ -14,5 +14,5 @@ object ApiFactory {
         .baseUrl(CRYPTO_NEWS_BASE_URL)
         .build()
 
-    val apiService: ApiService = retrofit.create(ApiService::class.java)
+    val apiService: CryptoNewsApiService = retrofit.create(CryptoNewsApiService::class.java)
 }

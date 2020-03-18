@@ -2,7 +2,7 @@ package com.example.cryptoapp.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.cryptoapp.data.DataConstants.Companion.CRYPTO_NEWS_BASE_IMAGE_URL
+import com.example.cryptoapp.data.DataConstants.CRYPTO_NEWS_BASE_IMAGE_URL
 import com.example.cryptoapp.toolchain.convertTimestampToTime
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
