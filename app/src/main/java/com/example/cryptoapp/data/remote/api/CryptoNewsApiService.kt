@@ -23,13 +23,6 @@ interface CryptoNewsApiService {
         @Query(QUERY_PARAM_TO_SYMBOL) tSym: String
     ): Single<Response<CoinInfoListOfDataResponse>>
 
-    @GET("top/totalvolfull")
-    suspend fun getTopCoinsInfo2(
-        @Query(QUERY_PARAM_API_KEY) apiKey: String,
-        @Query(QUERY_PARAM_LIMIT) limit: Int,
-        @Query(QUERY_PARAM_TO_SYMBOL) tSym: String
-    ): Response<CoinInfoListOfDataResponse>
-
     @GET("pricemultifull")
     fun getFullPriceList(
         @Query(QUERY_PARAM_API_KEY) apiKey: String,
