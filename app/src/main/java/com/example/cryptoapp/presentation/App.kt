@@ -13,13 +13,13 @@ class App : Application() {
      * (in some cases null check is required)
      */
     companion object {
-        lateinit var mContext: Context
+        lateinit var context: Context
         lateinit var sInstance: App
     }
 
     override fun onCreate() {
         super.onCreate()
         sInstance = this
-        mContext = applicationContext
+        context = applicationContext
     }
 }
