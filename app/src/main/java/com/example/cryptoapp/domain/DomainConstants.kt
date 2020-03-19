@@ -1,6 +1,6 @@
 package com.example.cryptoapp.domain
 
 object DomainConstants {
-    const val CURRENCY = "USD"
+    const val USA_DOLLAR_CURRENCY = "USD"
 
 }

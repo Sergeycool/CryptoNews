@@ -3,7 +3,7 @@ package com.example.cryptoapp.domain.usecase
 import com.example.cryptoapp.data.model.CoinPriceInfo
 import com.example.cryptoapp.data.model.CoinPriceInfoRawData
 import com.example.cryptoapp.data.repository.RateRepository
-import com.example.cryptoapp.domain.DomainConstants.CURRENCY
+import com.example.cryptoapp.domain.DomainConstants.USA_DOLLAR_CURRENCY
 import com.example.cryptoapp.toolchain.rxjava.RxMessage
 import com.example.cryptoapp.toolchain.rxjava.RxResponseException
 import com.google.gson.Gson
@@ -14,7 +14,7 @@ class GetTopCoinsInfoUseCase {
     fun execute(
         apiKey: String = "",
         limit: Int,
-        tSym: String = CURRENCY
+        tSym: String = USA_DOLLAR_CURRENCY
     ): Observable<RxMessage<List<CoinPriceInfo>>> {
 
         val startSingle: Single<RxMessage<List<CoinPriceInfo>>> =
@@ -30,13 +30,9 @@ class GetTopCoinsInfoUseCase {
 
                 it.body()?.data?.map { it.coinInfo?.name }?.joinToString(",")
             }
-            .flatMap { RateRepository.getFullPriceList(fSyms = it, tSyms = CURRENCY) }
-            .map {
-                RxMessage.onNextLast(getPriceListFromRawData(it))
-            }
-            .onErrorReturn {
-                RxMessage.onError(it)
-            }
+            .flatMap { RateRepository.getFullPriceList(fSyms = it, tSyms = USA_DOLLAR_CURRENCY) }
+            .map { RxMessage.onNextLast(getPriceListFromRawData(it)) }
+            .onErrorReturn { RxMessage.onError(it) }
 
         return Observable.concat(startSingle.toObservable(), requestSingle.toObservable())
     }
