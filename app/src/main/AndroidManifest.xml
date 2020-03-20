@@ -16,8 +16,21 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
 
-        <activity android:name=".presentation.activity.CoinDetailActivity" />
-        <activity android:name=".presentation.activity.CoinPriceListActivity">
+        <activity
+            android:name=".presentation.activity.CoinDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.activity.CoinPriceListActivity"
+            android:screenOrientation="portrait">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+        <activity
+            android:name=".presentation.activity.HomeActivity"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -8,4 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="CryptoNewsBottomNav">
+        <item name="itemIconTint">@android:color/white</item>
+        <item name="menu">@menu/bottom_nav_menu</item>
+        <item name="itemBackground">@color/colorPrimary </item>
+<!--        TODO selector-->
+        <!--        TODO background with rounded top corners-->
+    </style>
+
+
 </resources>
