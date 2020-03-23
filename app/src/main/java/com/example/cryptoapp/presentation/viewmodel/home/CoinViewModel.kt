@@ -1,4 +1,4 @@
-package com.example.cryptoapp.presentation.viewmodel.rate
+package com.example.cryptoapp.presentation.viewmodel.home
 
 import android.app.Application
 import android.util.Log

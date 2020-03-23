@@ -1,10 +1,9 @@
 package com.example.cryptoapp.toolchain.mvvmbase
 
-import androidx.lifecycle.AndroidViewModel
-import com.example.cryptoapp.presentation.App
+import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 
-abstract class BaseViewModel : AndroidViewModel(App.sInstance) {
+abstract class BaseViewModel : ViewModel() {
     val disposables = CompositeDisposable()
 //    private val mOnBackClicked: SingleLiveEvent<Any> = SingleLiveEvent()
     override fun onCleared() {
