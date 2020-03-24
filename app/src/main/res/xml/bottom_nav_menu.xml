@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+
+    <tab
+        icon="@drawable/ic_bar_graph_currency"
+        id="@+id/navigation_home"
+        title="Rates" />
+    <tab
+        icon="@drawable/ic_bar_news"
+        id="@+id/navigation_news"
+        title="News" />
+    <tab
+        icon="@drawable/ic_bar_settings"
+        id="@+id/navigation_settings"
+        title="Setting" />
+
+</tabs>

@@ -31,14 +31,6 @@ abstract class BaseFragmentActivity<VM : BaseViewModel> : AppCompatActivity() {
 //        }
 //    }
 
-//    protected fun pushFragment(fragment: Fragment, sharedElementList: MutableList<Pair<View, String>>?) {
-//        val options: FragNavTransactionOptions.Builder = FragNavTransactionOptions.newBuilder()
-//        sharedElementList?.let {
-//            sharedElementList.forEach { options.addSharedElement(it) }
-//        }
-//        fragNavController.pushFragment(fragment, options.build())
-//    }
-
 //    override val numberOfRootFragments: Int
 //        get() = TODO("Not yet implemented")
 //

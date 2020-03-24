@@ -1,72 +1,100 @@
 package com.example.cryptoapp.presentation.activity
 
 import android.os.Bundle
+import android.util.Log
+import android.view.MenuItem
+import android.view.View
+import androidx.core.util.Pair
 import androidx.fragment.app.Fragment
 import com.example.cryptoapp.R
 import com.example.cryptoapp.presentation.fragment.home.CoinListFragment
 import com.example.cryptoapp.presentation.viewmodel.home.HomeSharedViewModel
+import com.example.cryptoapp.toolchain.mvvmbase.BaseFragment
 import com.example.cryptoapp.toolchain.mvvmbase.BaseFragmentActivity
 import com.ncapdevi.fragnav.FragNavController
-import kotlinx.android.synthetic.main.activity_home.*
+import com.ncapdevi.fragnav.FragNavLogger
+import com.ncapdevi.fragnav.FragNavSwitchController
+import com.ncapdevi.fragnav.FragNavTransactionOptions
+import com.ncapdevi.fragnav.tabhistory.UniqueTabHistoryStrategy
+import com.roughike.bottombar.BottomBar
 
 class HomeActivity : BaseFragmentActivity<HomeSharedViewModel>(),
-   FragNavController.RootFragmentListener,  FragNavController.TransactionListener {
+    FragNavController.RootFragmentListener, FragNavController.TransactionListener, BaseFragment.FragmentNavigation {
 
-    private lateinit var fragNavController: FragNavController
-    lateinit var homeTabFragment: CoinListFragment
-    lateinit var newsTabFragment: CoinListFragment
+    private val fragNavController: FragNavController =
+        FragNavController(supportFragmentManager, R.id.fragment_container)
+    private lateinit var bottomBar: BottomBar
+    override val numberOfRootFragments: Int = 2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-
-        homeTabFragment = CoinListFragment.newInstance("Home fragment", "")
-        newsTabFragment = CoinListFragment.newInstance("News fragment", "")
-        fragNavController = FragNavController(supportFragmentManager, R.id.fragment_container)
-        val rootFragments = listOf(
-            homeTabFragment,
-            newsTabFragment
-        )
-        initFragmentNavigation(rootFragments)
-        fragNavController.initialize()
-
+        bottomBar = findViewById(R.id.bottom_bar)
+        initFragmentNavigation(savedInstanceState)
 //        sharedViewModel.eventNavigateToDetailCoin.observe(this@HomeActivity, Observer {
 //            navigateToHomeRootPagerFragment()
 //        })
     }
 
-    private fun initFragmentNavigation(listFragments: List<Fragment>) {
-        with(fragNavController) {
+    private fun initFragmentNavigation(savedInstanceState: Bundle?) {
+        fragNavController.apply {
             transactionListener = this@HomeActivity
-//            rootFragmentListener = this@HomeActivity
+            rootFragmentListener = this@HomeActivity
             createEager = true
+            fragNavLogger = object : FragNavLogger {
+                override fun error(message: String, throwable: Throwable) {
+                    Log.e(TAG, message, throwable)
+                }
+            }
             fragmentHideStrategy = FragNavController.DETACH
-            rootFragments = listFragments
-//            navigationStrategy = UniqueTabHistoryStrategy(FragNavSwitchController{
-//                switchTab()
-//            })
+            navigationStrategy = UniqueTabHistoryStrategy(
+                object : FragNavSwitchController {
+                    override fun switchTab(index: Int,
+                                           transactionOptions: FragNavTransactionOptions?) {
+                        bottomBar.selectTabAtPosition(index)
+                    }
+                })
         }
+        fragNavController.initialize()
+        val initial = savedInstanceState == null //TODO replace with mutable live data
+        if (initial) {
+            bottomBar.selectTabAtPosition(FragNavController.TAB1)
+        }
+        bottomBar.setOnTabSelectListener( { tabId ->
+            when (tabId) {
+                R.id.navigation_home -> fragNavController.switchTab(FragNavController.TAB1)
+                R.id.navigation_news -> fragNavController.switchTab(FragNavController.TAB2)
+
+            }
+        }, initial)
+        bottomBar.setOnTabReselectListener { fragNavController.clearStack() }
     }
 
-    fun switchTab(tabId: Int) {
-        val itemId = when (tabId) {
-            FragNavController.TAB1 -> R.id.navigation_home
-            FragNavController.TAB2 -> R.id.navigation_news
-            else -> R.id.navigation_home
+    override fun onBackPressed() {
+        if (fragNavController.popFragment().not()) {
+            super.onBackPressed()
         }
-        nav_view.selectedItemId = itemId
     }
 
     override fun getRootFragment(index: Int): Fragment {
-        when(index) {
-            FragNavController.TAB1 -> homeTabFragment
-            FragNavController.TAB2 -> newsTabFragment
+        return when (index) {
+            FragNavController.TAB1 -> CoinListFragment.newInstance("Home fragment", "")
+            FragNavController.TAB2 -> CoinListFragment.newInstance("News fragment", "")
+            else -> throw IllegalStateException("Need to send an index that we know")
         }
-        throw IllegalStateException("Need to send an index that we know")
     }
 
-    override fun onFragmentTransaction(fragment: Fragment?,
-                                       transactionType: FragNavController.TransactionType) {
+    override fun pushFragment(fragment: Fragment, sharedElementList: List<Pair<View, String>>?) {
+        val options = FragNavTransactionOptions.newBuilder()
+        sharedElementList?.let {
+            it.forEach { pair ->
+                options.addSharedElement(pair)
+            }
+        }
+        fragNavController.pushFragment(fragment, options.build())
+    }
+
+    override fun onFragmentTransaction(fragment: Fragment?, transactionType: FragNavController.TransactionType) {
         supportActionBar?.setDisplayHomeAsUpEnabled(!fragNavController.isRootFragment)
     }
 
@@ -74,10 +102,19 @@ class HomeActivity : BaseFragmentActivity<HomeSharedViewModel>(),
         supportActionBar?.setDisplayHomeAsUpEnabled(!fragNavController.isRootFragment)
     }
 
-    override val numberOfRootFragments: Int = 2
-
     fun navigateToHomeRootPagerFragment() {
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> fragNavController.popFragment()
+        }
+        return true
+    }
+
+    companion object {
+        private val TAG = HomeActivity::class.java.simpleName
     }
 
 }
