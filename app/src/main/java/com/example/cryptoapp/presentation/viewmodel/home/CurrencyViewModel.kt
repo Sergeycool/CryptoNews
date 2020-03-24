@@ -10,7 +10,7 @@ import com.example.cryptoapp.toolchain.mvvmbase.BaseViewModel
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
-class CoinViewModel(application: Application) : BaseViewModel() {
+class CurrencyViewModel(application: Application) : BaseViewModel() {
 
     private val db = AppDatabase.getInstance(application)
 

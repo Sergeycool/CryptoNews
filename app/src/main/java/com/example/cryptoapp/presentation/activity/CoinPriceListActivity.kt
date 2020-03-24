@@ -7,13 +7,12 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.cryptoapp.R
 import com.example.cryptoapp.data.model.CoinPriceInfo
 import com.example.cryptoapp.presentation.adapter.CoinInfoAdapter
-import com.example.cryptoapp.presentation.viewmodel.home.CoinViewModel
+import com.example.cryptoapp.presentation.viewmodel.home.CurrencyViewModel
 import kotlinx.android.synthetic.main.activity_coin_prce_list.*
 
 class CoinPriceListActivity : AppCompatActivity() {
 
-    //TODO replace with fragment
-    private lateinit var viewModel: CoinViewModel
+    private lateinit var viewModel: CurrencyViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +29,7 @@ class CoinPriceListActivity : AppCompatActivity() {
             }
         }
         rvCoinPriceList.adapter = adapter
-        viewModel = ViewModelProviders.of(this)[CoinViewModel::class.java]
+        viewModel = ViewModelProviders.of(this)[CurrencyViewModel::class.java]
         viewModel.priceList.observe(this, Observer {
             adapter.coinInfoList = it
         })

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.fragment.home.CoinListFragment">
+    tools:context=".presentation.fragment.home.CurrencyListFragment">
 
     <TextView
         android:id="@+id/test_text"

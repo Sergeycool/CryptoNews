@@ -7,7 +7,9 @@ import android.view.View
 import androidx.core.util.Pair
 import androidx.fragment.app.Fragment
 import com.example.cryptoapp.R
-import com.example.cryptoapp.presentation.fragment.home.CoinListFragment
+import com.example.cryptoapp.presentation.UiConstants.CURRENCY_LIST_FRAGMENT
+import com.example.cryptoapp.presentation.UiConstants.NEWS_FRAGMENT
+import com.example.cryptoapp.presentation.fragment.home.CurrencyListFragment
 import com.example.cryptoapp.presentation.viewmodel.home.HomeSharedViewModel
 import com.example.cryptoapp.toolchain.mvvmbase.BaseFragment
 import com.example.cryptoapp.toolchain.mvvmbase.BaseFragmentActivity
@@ -19,7 +21,9 @@ import com.ncapdevi.fragnav.tabhistory.UniqueTabHistoryStrategy
 import com.roughike.bottombar.BottomBar
 
 class HomeActivity : BaseFragmentActivity<HomeSharedViewModel>(),
-    FragNavController.RootFragmentListener, FragNavController.TransactionListener, BaseFragment.FragmentNavigation {
+    FragNavController.RootFragmentListener,
+    FragNavController.TransactionListener,
+    BaseFragment.FragmentNavigation {
 
     private val fragNavController: FragNavController =
         FragNavController(supportFragmentManager, R.id.fragment_container)
@@ -58,12 +62,12 @@ class HomeActivity : BaseFragmentActivity<HomeSharedViewModel>(),
         fragNavController.initialize()
         val initial = savedInstanceState == null //TODO replace with mutable live data
         if (initial) {
-            bottomBar.selectTabAtPosition(FragNavController.TAB1)
+            bottomBar.selectTabAtPosition(CURRENCY_LIST_FRAGMENT)
         }
         bottomBar.setOnTabSelectListener( { tabId ->
             when (tabId) {
-                R.id.navigation_home -> fragNavController.switchTab(FragNavController.TAB1)
-                R.id.navigation_news -> fragNavController.switchTab(FragNavController.TAB2)
+                R.id.navigation_home -> fragNavController.switchTab(CURRENCY_LIST_FRAGMENT)
+                R.id.navigation_news -> fragNavController.switchTab(NEWS_FRAGMENT)
 
             }
         }, initial)
@@ -78,8 +82,8 @@ class HomeActivity : BaseFragmentActivity<HomeSharedViewModel>(),
 
     override fun getRootFragment(index: Int): Fragment {
         return when (index) {
-            FragNavController.TAB1 -> CoinListFragment.newInstance("Home fragment", "")
-            FragNavController.TAB2 -> CoinListFragment.newInstance("News fragment", "")
+            CURRENCY_LIST_FRAGMENT -> CurrencyListFragment.newInstance("Home fragment")
+            NEWS_FRAGMENT -> CurrencyListFragment.newInstance("News fragment")
             else -> throw IllegalStateException("Need to send an index that we know")
         }
     }

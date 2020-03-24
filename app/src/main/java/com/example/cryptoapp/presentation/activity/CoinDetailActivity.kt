@@ -7,15 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.cryptoapp.R
-import com.example.cryptoapp.presentation.viewmodel.home.CoinViewModel
+import com.example.cryptoapp.presentation.viewmodel.home.CurrencyViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_coin_detail.*
 
 class CoinDetailActivity : AppCompatActivity() {
 
-    //TODO replace with fragment
-
-    private lateinit var viewModel: CoinViewModel
+    private lateinit var viewModel: CurrencyViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +23,7 @@ class CoinDetailActivity : AppCompatActivity() {
             return
         }
         val fromSymbol = intent.getStringExtra(EXTRA_FROM_SYMBOL)
-        viewModel = ViewModelProvider(this)[CoinViewModel::class.java]
+        viewModel = ViewModelProvider(this)[CurrencyViewModel::class.java]
         viewModel.getDetailInfo(fromSymbol).observe(this, Observer {
             tvPrice.text = it.price
             tvMinPrice.text = it.lowDay

@@ -5,16 +5,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import androidx.core.util.Pair
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import java.lang.reflect.ParameterizedType
 
 abstract class BaseFragment<VM : BaseViewModel, SVM : BaseViewModel> : Fragment() {
-
     protected lateinit var viewModel: VM
     protected lateinit var sharedViewModel: SVM
-
     lateinit var mFragmentNavigation: FragmentNavigation
 
     override fun onAttach(context: Context) {
@@ -28,8 +27,11 @@ abstract class BaseFragment<VM : BaseViewModel, SVM : BaseViewModel> : Fragment(
                               savedInstanceState: Bundle?): View? {
         viewModel = ViewModelProviders.of(this).get(getViewModelClass())
         sharedViewModel = ViewModelProviders.of(activity!!).get(getSharedViewModelClass())
-        return super.onCreateView(inflater, container, savedInstanceState)
+        return inflater.inflate(getLayoutRes(), container, false)
     }
+
+    @LayoutRes
+    protected abstract fun getLayoutRes(): Int
 
     @Suppress("UNCHECKED_CAST")
     private fun getViewModelClass(): Class<VM> {
