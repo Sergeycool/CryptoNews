@@ -10,44 +10,11 @@ import java.lang.reflect.ParameterizedType
 abstract class BaseFragmentActivity<VM : BaseViewModel> : AppCompatActivity() {
 
     protected lateinit var sharedViewModel: VM
-//    private lateinit var fragNavController: FragNavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedViewModel = ViewModelProviders.of(this).get(getViewModelClass())
-//        fragNavController = FragNavController(supportFragmentManager, R.id.fragment_container)
     }
-
-//    protected fun clearFragmentStack() {
-//        fragNavController.clearStack()
-//    }
-
-//    protected fun initFragmentNavigation() {
-//        with(fragNavController){
-//            transactionListener = this@BaseFragmentActivity
-//            rootFragmentListener = this@BaseFragmentActivity
-//            createEager = true
-//            fragmentHideStrategy = FragNavController.DETACH
-//        }
-//    }
-
-//    override val numberOfRootFragments: Int
-//        get() = TODO("Not yet implemented")
-//
-//    override fun getRootFragment(index: Int): Fragment {
-//        TODO("Not yet implemented")
-//    }
-//
-//    override fun onFragmentTransaction(
-//        fragment: Fragment?,
-//        transactionType: FragNavController.TransactionType
-//    ) {
-//        TODO("Not yet implemented")
-//    }
-//
-//    override fun onTabTransaction(fragment: Fragment?, index: Int) {
-//        TODO("Not yet implemented")
-//    }
 
     @Suppress("UNCHECKED_CAST")
     private fun getViewModelClass(): Class<VM> {

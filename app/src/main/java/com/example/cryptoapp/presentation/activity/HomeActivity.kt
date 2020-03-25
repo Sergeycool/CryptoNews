@@ -63,9 +63,16 @@ class HomeActivity : BaseFragmentActivity<HomeSharedViewModel>(),
                 })
         }
         fragNavController.initialize()
-        val initial = savedInstanceState == null //TODO replace with mutable live data
+
+        val currentFragmentIndex: Int =
+            when (sharedViewModel.currentFragment.value) {
+            0 -> 0
+            else -> CURRENCY_LIST_FRAGMENT
+        }
+        val initial: Boolean = currentFragmentIndex == null
+
         if (initial) {
-            bottomBar.selectTabAtPosition(CURRENCY_LIST_FRAGMENT)
+            bottomBar.selectTabAtPosition(currentFragmentIndex)
         }
         bottomBar.setOnTabSelectListener( { tabId ->
             when (tabId) {
