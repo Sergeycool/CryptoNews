@@ -6,9 +6,11 @@ import android.view.MenuItem
 import android.view.View
 import androidx.core.util.Pair
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.example.cryptoapp.R
 import com.example.cryptoapp.presentation.UiConstants.CURRENCY_LIST_FRAGMENT
 import com.example.cryptoapp.presentation.UiConstants.NEWS_FRAGMENT
+import com.example.cryptoapp.presentation.fragment.home.CurrencyDetailFragment
 import com.example.cryptoapp.presentation.fragment.home.CurrencyListFragment
 import com.example.cryptoapp.presentation.viewmodel.home.HomeSharedViewModel
 import com.example.cryptoapp.toolchain.mvvmbase.BaseFragment
@@ -35,9 +37,10 @@ class HomeActivity : BaseFragmentActivity<HomeSharedViewModel>(),
         setContentView(R.layout.activity_home)
         bottomBar = findViewById(R.id.bottom_bar)
         initFragmentNavigation(savedInstanceState)
-//        sharedViewModel.eventNavigateToDetailCoin.observe(this@HomeActivity, Observer {
-//            navigateToHomeRootPagerFragment()
-//        })
+        sharedViewModel.eventNavigateToDetailCoin.observe(this, Observer {
+            fragNavController.clearStack()
+            pushFragment(CurrencyDetailFragment.newInstance(it))
+        })
     }
 
     private fun initFragmentNavigation(savedInstanceState: Bundle?) {
@@ -82,8 +85,8 @@ class HomeActivity : BaseFragmentActivity<HomeSharedViewModel>(),
 
     override fun getRootFragment(index: Int): Fragment {
         return when (index) {
-            CURRENCY_LIST_FRAGMENT -> CurrencyListFragment.newInstance("Home fragment")
-            NEWS_FRAGMENT -> CurrencyListFragment.newInstance("News fragment")
+            CURRENCY_LIST_FRAGMENT -> CurrencyListFragment.newInstance()
+            NEWS_FRAGMENT -> CurrencyListFragment.newInstance()
             else -> throw IllegalStateException("Need to send an index that we know")
         }
     }
@@ -104,10 +107,6 @@ class HomeActivity : BaseFragmentActivity<HomeSharedViewModel>(),
 
     override fun onTabTransaction(fragment: Fragment?, index: Int) {
         supportActionBar?.setDisplayHomeAsUpEnabled(!fragNavController.isRootFragment)
-    }
-
-    fun navigateToHomeRootPagerFragment() {
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

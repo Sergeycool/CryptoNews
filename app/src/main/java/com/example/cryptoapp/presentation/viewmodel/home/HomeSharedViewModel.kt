@@ -5,12 +5,11 @@ import com.example.cryptoapp.toolchain.mvvmbase.SingleLiveEvent
 
 class HomeSharedViewModel : BaseViewModel() {
 
-    val eventNavigateToDetailCoin: SingleLiveEvent<Unit> = SingleLiveEvent()
+    val eventNavigateToDetailCoin: SingleLiveEvent<String> = SingleLiveEvent()
 
-
-
-
-    fun navigateToDetailCoin() = eventNavigateToDetailCoin.call()
+    fun navigateToDetailCoin(fromSymbol: String) {
+        eventNavigateToDetailCoin.value = fromSymbol
+    }
 
 
 }

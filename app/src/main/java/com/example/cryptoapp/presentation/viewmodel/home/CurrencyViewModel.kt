@@ -1,20 +1,19 @@
 package com.example.cryptoapp.presentation.viewmodel.home
 
-import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.cryptoapp.data.database.AppDatabase
 import com.example.cryptoapp.data.model.CoinPriceInfo
 import com.example.cryptoapp.domain.usecase.GetTopCoinsInfoUseCase
+import com.example.cryptoapp.presentation.App
 import com.example.cryptoapp.toolchain.mvvmbase.BaseViewModel
 import io.reactivex.schedulers.Schedulers
-import java.util.concurrent.TimeUnit
 
-class CurrencyViewModel(application: Application) : BaseViewModel() {
+class CurrencyViewModel : BaseViewModel() {
 
-    private val db = AppDatabase.getInstance(application)
+    private val db = AppDatabase.getInstance(App.context)
 
-    val priceList = db.coinPriceInfoDao().getPriceList()
+    val priceList = db.coinPriceInfoDao().getPriceList() //TODO migrate to mutable live data
 
     fun getDetailInfo(fSym: String): LiveData<CoinPriceInfo> {
         return db.coinPriceInfoDao().getPriceInfoAboutCoin(fSym)
@@ -27,17 +26,22 @@ class CurrencyViewModel(application: Application) : BaseViewModel() {
     private fun loadData() {
         disposables.add(
             GetTopCoinsInfoUseCase().execute(limit = 10)
-                .delaySubscription(5, TimeUnit.SECONDS)
-                .repeat()
-                .retry()
+//                .delaySubscription(5, TimeUnit.SECONDS) TODO update each time when view model recreated
+//                .repeat()
+//                .retry()
                 .subscribeOn(Schedulers.io())
                 .subscribe({
                     if (it.isCompleteWithoutError()) {
-                        it.result?.let { it1 -> db.coinPriceInfoDao().insertPriceList(it1) }
+                        it.result?.let { priceList ->
+                            db.coinPriceInfoDao().insertPriceList(priceList) }
                     }
                 }, {
-                    Log.d("TEST_OF_LOADING_DATA", "Failure: ${it.message}")
+                    Log.d(TAG, "Failure: ${it.message}")
                 })
         )
+    }
+
+    companion object {
+        private val TAG = CurrencyViewModel::class.java.simpleName
     }
 }
