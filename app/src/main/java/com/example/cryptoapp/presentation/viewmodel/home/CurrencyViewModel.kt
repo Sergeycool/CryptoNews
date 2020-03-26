@@ -1,9 +1,7 @@
 package com.example.cryptoapp.presentation.viewmodel.home
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import com.example.cryptoapp.data.database.AppDatabase
-import com.example.cryptoapp.data.model.CoinPriceInfo
 import com.example.cryptoapp.domain.usecase.GetTopCoinsInfoUseCase
 import com.example.cryptoapp.presentation.App
 import com.example.cryptoapp.toolchain.mvvmbase.BaseViewModel
@@ -15,9 +13,9 @@ class CurrencyViewModel : BaseViewModel() {
 
     val priceList = db.coinPriceInfoDao().getPriceList() //TODO migrate to mutable live data
 
-    fun getDetailInfo(fSym: String): LiveData<CoinPriceInfo> {
-        return db.coinPriceInfoDao().getPriceInfoAboutCoin(fSym)
-    }
+//    fun getDetailInfo(fSym: String): LiveData<CoinPriceInfo> {
+//        return db.coinPriceInfoDao().getPriceInfoAboutCoin(fSym)
+//    }
 
     init {
         loadData()
@@ -26,7 +24,7 @@ class CurrencyViewModel : BaseViewModel() {
     private fun loadData() {
         disposables.add(
             GetTopCoinsInfoUseCase().execute(limit = 10)
-//                .delaySubscription(5, TimeUnit.SECONDS) TODO update each time when view model recreated
+//                .delaySubscription(5, TimeUnit.SECONDS)
 //                .repeat()
 //                .retry()
                 .subscribeOn(Schedulers.io())

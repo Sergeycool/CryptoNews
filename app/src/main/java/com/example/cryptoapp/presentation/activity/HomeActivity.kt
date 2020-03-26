@@ -63,24 +63,13 @@ class HomeActivity : BaseFragmentActivity<HomeSharedViewModel>(),
                 })
         }
         fragNavController.initialize()
-
-        val currentFragmentIndex: Int =
-            when (sharedViewModel.currentFragment.value) {
-            0 -> 0
-            else -> CURRENCY_LIST_FRAGMENT
-        }
-        val initial: Boolean = currentFragmentIndex == null
-
-        if (initial) {
-            bottomBar.selectTabAtPosition(currentFragmentIndex)
-        }
         bottomBar.setOnTabSelectListener( { tabId ->
             when (tabId) {
                 R.id.navigation_home -> fragNavController.switchTab(CURRENCY_LIST_FRAGMENT)
                 R.id.navigation_news -> fragNavController.switchTab(NEWS_FRAGMENT)
 
             }
-        }, initial)
+        }, false)
         bottomBar.setOnTabReselectListener { fragNavController.clearStack() }
     }
 
