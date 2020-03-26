@@ -22,7 +22,8 @@ class CurrencyListFragment : BaseFragment<CurrencyViewModel, HomeSharedViewModel
             }
         }
         rv_coin_priceList.adapter = currencyAdapter
-        viewModel.priceList.observe(viewLifecycleOwner, Observer {
+        viewModel.getLastPriceList()
+        viewModel.coinDataList.observe(viewLifecycleOwner, Observer {
             currencyAdapter.coinInfoList = it
         })
     }

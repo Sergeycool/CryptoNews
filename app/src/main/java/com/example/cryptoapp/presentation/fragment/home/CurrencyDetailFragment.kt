@@ -15,11 +15,10 @@ class CurrencyDetailFragment : BaseFragment<CurrencyDetailViewModel, HomeSharedV
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        var text: String? = "BTC"
-        text?.let { text = arguments?.getString(ARGUMENT_FROM_SYMBOL) }
+        var fromSymbol: String? = arguments?.getString(ARGUMENT_FROM_SYMBOL)
+        if (fromSymbol.isNullOrEmpty()) fromSymbol = "BTC"
 
-        viewModel.getDetailInfo("BTC")
-
+        viewModel.getDetailInfo(fromSymbol)
         viewModel.detailCurrencyInfo.observe(viewLifecycleOwner, Observer {
             tvPrice.text = it.price
             tvMinPrice.text = it.lowDay
@@ -44,7 +43,6 @@ class CurrencyDetailFragment : BaseFragment<CurrencyDetailViewModel, HomeSharedV
                     putString(ARGUMENT_FROM_SYMBOL, fromSymbol)
                 }
             }
-
     }
 
 }

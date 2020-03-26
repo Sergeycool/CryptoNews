@@ -8,7 +8,11 @@ import io.reactivex.Flowable
 object CachedDataRepository {
     private val db = AppDatabase.getInstance(App.context)
 
-    fun getDetailInfoForCurrency(fromSymbol: String): Flowable<CoinPriceInfo>{
+    fun getDetailInfoForCurrency(fromSymbol: String): Flowable<CoinPriceInfo> {
         return db.coinPriceInfoDao().getPriceInfoAboutCoin(fromSymbol)
+    }
+
+    fun getLastPriceList(): Flowable<List<CoinPriceInfo>> {
+        return db.coinPriceInfoDao().getPriceList()
     }
 }
