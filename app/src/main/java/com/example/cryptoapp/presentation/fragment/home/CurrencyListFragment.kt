@@ -6,12 +6,12 @@ import com.example.cryptoapp.R
 import com.example.cryptoapp.data.model.CoinPriceInfo
 import com.example.cryptoapp.presentation.App
 import com.example.cryptoapp.presentation.adapter.CoinInfoAdapter
-import com.example.cryptoapp.presentation.viewmodel.home.CurrencyViewModel
+import com.example.cryptoapp.presentation.viewmodel.home.CurrencyListViewModel
 import com.example.cryptoapp.presentation.viewmodel.home.HomeSharedViewModel
 import com.example.cryptoapp.toolchain.mvvmbase.BaseFragment
 import kotlinx.android.synthetic.main.fragment_coin_list.*
 
-class CurrencyListFragment : BaseFragment<CurrencyViewModel, HomeSharedViewModel>() {
+class CurrencyListFragment : BaseFragment<CurrencyListViewModel, HomeSharedViewModel>() {
     private val currencyAdapter = CoinInfoAdapter(App.context)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -22,7 +22,6 @@ class CurrencyListFragment : BaseFragment<CurrencyViewModel, HomeSharedViewModel
             }
         }
         rv_coin_priceList.adapter = currencyAdapter
-        viewModel.getLastPriceList()
         viewModel.coinDataList.observe(viewLifecycleOwner, Observer {
             currencyAdapter.coinInfoList = it
         })

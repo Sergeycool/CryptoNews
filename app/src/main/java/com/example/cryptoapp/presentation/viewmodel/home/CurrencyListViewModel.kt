@@ -2,19 +2,16 @@ package com.example.cryptoapp.presentation.viewmodel.home
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.example.cryptoapp.data.database.AppDatabase
 import com.example.cryptoapp.data.model.CoinPriceInfo
 import com.example.cryptoapp.domain.usecase.GetLastPriceListUseCase
 import com.example.cryptoapp.domain.usecase.GetTopCoinsInfoUseCase
-import com.example.cryptoapp.presentation.App
+import com.example.cryptoapp.domain.usecase.InsertCoinPriceInfoUseCase
 import com.example.cryptoapp.toolchain.mvvmbase.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
-class CurrencyViewModel : BaseViewModel() {
-
-    private val db = AppDatabase.getInstance(App.context)
+class CurrencyListViewModel : BaseViewModel() {
     val coinDataList: MutableLiveData<List<CoinPriceInfo>> = MutableLiveData()
 
     init {
@@ -24,7 +21,7 @@ class CurrencyViewModel : BaseViewModel() {
     private fun loadData() {
         disposables.add(
             GetTopCoinsInfoUseCase().execute(limit = 10)
-                .delaySubscription(5, TimeUnit.SECONDS)
+                .delaySubscription(1, TimeUnit.MINUTES)
                 .repeat()
                 .retry()
                 .subscribeOn(Schedulers.io())
@@ -32,8 +29,12 @@ class CurrencyViewModel : BaseViewModel() {
                 .subscribe({
                     if (it.isCompleteWithoutError()) {
                         it.result?.let { priceList ->
-                            db.coinPriceInfoDao().insertPriceList(priceList)
-                        } //TODO implement Comletable
+                            coinDataList.value = priceList
+                            saveUpdatedData(priceList)
+                        }
+                    } else {
+                        // get cached data after
+                        getLastPriceList()
                     }
                 }, {
                     Log.d(TAG, "Failure: ${it.message}")
@@ -41,7 +42,14 @@ class CurrencyViewModel : BaseViewModel() {
         )
     }
 
-    fun getLastPriceList() {
+    private fun saveUpdatedData(priceListInfo: List<CoinPriceInfo>) {
+        InsertCoinPriceInfoUseCase().execute(priceListInfo)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe()
+    }
+
+    private fun getLastPriceList() {
         disposables.add(
             GetLastPriceListUseCase().execute()
                 .subscribeOn(Schedulers.io())
@@ -52,6 +60,6 @@ class CurrencyViewModel : BaseViewModel() {
     }
 
     companion object {
-        private val TAG = CurrencyViewModel::class.java.simpleName
+        private val TAG = CurrencyListViewModel::class.java.simpleName
     }
 }

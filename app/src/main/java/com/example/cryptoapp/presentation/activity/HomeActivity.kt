@@ -36,14 +36,14 @@ class HomeActivity : BaseFragmentActivity<HomeSharedViewModel>(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         bottomBar = findViewById(R.id.bottom_bar)
-        initFragmentNavigation(savedInstanceState)
+        initFragmentNavigation()
         sharedViewModel.eventNavigateToDetailCoin.observe(this, Observer {
             fragNavController.clearStack()
             pushFragment(CurrencyDetailFragment.newInstance(it))
         })
     }
 
-    private fun initFragmentNavigation(savedInstanceState: Bundle?) {
+    private fun initFragmentNavigation() {
         fragNavController.apply {
             transactionListener = this@HomeActivity
             rootFragmentListener = this@HomeActivity

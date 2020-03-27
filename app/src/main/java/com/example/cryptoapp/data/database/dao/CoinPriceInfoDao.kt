@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.cryptoapp.data.model.CoinPriceInfo
+import io.reactivex.Completable
 import io.reactivex.Flowable
 
 @Dao
@@ -16,5 +17,5 @@ interface CoinPriceInfoDao {
     fun getPriceInfoAboutCoin(fSym: String): Flowable<CoinPriceInfo>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertPriceList(priceList: List<CoinPriceInfo>)
+    fun insertPriceList(priceList: List<CoinPriceInfo>): Completable
 }
