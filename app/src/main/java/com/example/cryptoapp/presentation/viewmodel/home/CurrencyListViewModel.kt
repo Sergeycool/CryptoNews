@@ -21,7 +21,7 @@ class CurrencyListViewModel : BaseViewModel() {
     private fun loadData() {
         disposables.add(
             GetTopCoinsInfoUseCase().execute(limit = 10)
-                .delaySubscription(1, TimeUnit.MINUTES)
+                .delaySubscription(10, TimeUnit.SECONDS)
                 .repeat()
                 .retry()
                 .subscribeOn(Schedulers.io())
