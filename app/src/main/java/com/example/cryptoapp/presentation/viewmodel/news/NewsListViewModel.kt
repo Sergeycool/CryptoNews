@@ -8,7 +8,7 @@ import com.example.cryptoapp.toolchain.mvvmbase.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class NewsListViewModel: BaseViewModel() {
+class NewsListViewModel : BaseViewModel() {
 
     init {
         getNews()
@@ -22,8 +22,8 @@ class NewsListViewModel: BaseViewModel() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    if (it.isCompleteWithoutError()){
-                        newsList.value = it.result?.data
+                    if (it.result != null) {
+                        newsList.value = it.result.data
                     }
 
                 }, { Log.d(TAG, "Failure: ${it.message}") })

@@ -15,6 +15,7 @@ class CurrencyListViewModel : BaseViewModel() {
     val coinDataList: MutableLiveData<List<CoinPriceInfo>> = MutableLiveData()
 
     init {
+        getCachedPriceList()
         loadData()
     }
 
@@ -32,9 +33,6 @@ class CurrencyListViewModel : BaseViewModel() {
                             coinDataList.value = priceList
                             saveUpdatedData(priceList)
                         }
-                    } else {
-                        // get cached data after
-                        getLastPriceList()
                     }
                 }, {
                     Log.d(TAG, "Failure: ${it.message}")
@@ -49,7 +47,7 @@ class CurrencyListViewModel : BaseViewModel() {
             .subscribe()
     }
 
-    private fun getLastPriceList() {
+    private fun getCachedPriceList() {
         disposables.add(
             GetLastPriceListUseCase().execute()
                 .subscribeOn(Schedulers.io())

@@ -21,7 +21,7 @@ class CurrencyListFragment : BaseFragment<CurrencyListViewModel, HomeSharedViewM
                 sharedViewModel.navigateToDetailCoin(coinPriceInfo.fromSymbol)
             }
         }
-        rv_coin_priceList.adapter = currencyAdapter
+        rvCoinPriceList.adapter = currencyAdapter
         viewModel.coinDataList.observe(viewLifecycleOwner, Observer {
             currencyAdapter.coinInfoList = it
         })

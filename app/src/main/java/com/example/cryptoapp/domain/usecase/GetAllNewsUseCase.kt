@@ -17,13 +17,12 @@ class GetAllNewsUseCase {
         val requestSingle: Single<RxMessage<GetNewsResponse>> = NewsRepository
             .getAllNews(lang)
             .map {
-                if (it.isSuccessful)
+                if (it.isSuccessful && it.body() != null)
                     RxMessage.onNext(it.body())
                 else
                     throw RxResponseException(it.code(), it.message())
             }
             .onErrorReturn { RxMessage.onError(it) }
-
 
         return Observable.concat(startSingle.toObservable(), requestSingle.toObservable())
     }

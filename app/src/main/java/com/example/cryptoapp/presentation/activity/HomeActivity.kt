@@ -12,6 +12,7 @@ import com.example.cryptoapp.presentation.UiConstants.CURRENCY_LIST_FRAGMENT
 import com.example.cryptoapp.presentation.UiConstants.NEWS_FRAGMENT
 import com.example.cryptoapp.presentation.fragment.home.CurrencyDetailFragment
 import com.example.cryptoapp.presentation.fragment.home.CurrencyListFragment
+import com.example.cryptoapp.presentation.fragment.news.NewsFragment
 import com.example.cryptoapp.presentation.viewmodel.home.HomeSharedViewModel
 import com.example.cryptoapp.toolchain.mvvmbase.BaseFragment
 import com.example.cryptoapp.toolchain.mvvmbase.BaseFragmentActivity
@@ -82,7 +83,7 @@ class HomeActivity : BaseFragmentActivity<HomeSharedViewModel>(),
     override fun getRootFragment(index: Int): Fragment {
         return when (index) {
             CURRENCY_LIST_FRAGMENT -> CurrencyListFragment.newInstance()
-            NEWS_FRAGMENT -> CurrencyListFragment.newInstance()
+            NEWS_FRAGMENT -> NewsFragment.newInstance()
             else -> throw IllegalStateException("Need to send an index that we know")
         }
     }
