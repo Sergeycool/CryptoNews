@@ -9,4 +9,5 @@ object UiConstants {
 
     // Bundle keys for fragment args
     const val ARGUMENT_FROM_SYMBOL = "ARGUMENT_FROM_SYMBOL"
+    const val ARGUMENT_NEWS = "ARGUMENT_NEWS"
 }

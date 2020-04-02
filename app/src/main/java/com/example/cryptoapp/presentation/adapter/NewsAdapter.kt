@@ -1,6 +1,5 @@
 package com.example.cryptoapp.presentation.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,13 +12,15 @@ import com.example.cryptoapp.toolchain.convertTimestampToTime
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_news.view.*
 
-class NewsAdapter(private val context: Context) : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
+class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
     var newsList: List<News> = listOf()
     set(value) {
         field = value
         notifyDataSetChanged()
     }
+
+    var onNewsClickListener: OnNewsClick? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val view =
@@ -31,11 +32,14 @@ class NewsAdapter(private val context: Context) : RecyclerView.Adapter<NewsAdapt
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         val news = newsList[position]
-        with(holder){
-            with(news){
+        with(holder) {
+            with(news) {
                 tvTitle.text = title
                 tvPublishedDate.text = convertTimestampToTime(publishedTime)
                 Picasso.get().load(imageUrl).into(ivArticleImage)
+                itemView.setOnClickListener {
+                    onNewsClickListener?.onNewsClick(this)
+                }
             }
         }
     }
@@ -46,4 +50,7 @@ class NewsAdapter(private val context: Context) : RecyclerView.Adapter<NewsAdapt
         val tvPublishedDate: TextView = itemView.tvNewsPublishedTime
     }
 
+    interface OnNewsClick {
+        fun onNewsClick(news: News)
+    }
 }

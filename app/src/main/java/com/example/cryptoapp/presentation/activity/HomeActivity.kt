@@ -12,6 +12,7 @@ import com.example.cryptoapp.presentation.UiConstants.CURRENCY_LIST_FRAGMENT
 import com.example.cryptoapp.presentation.UiConstants.NEWS_FRAGMENT
 import com.example.cryptoapp.presentation.fragment.home.CurrencyDetailFragment
 import com.example.cryptoapp.presentation.fragment.home.CurrencyListFragment
+import com.example.cryptoapp.presentation.fragment.news.ArticleFragment
 import com.example.cryptoapp.presentation.fragment.news.NewsFragment
 import com.example.cryptoapp.presentation.viewmodel.home.HomeSharedViewModel
 import com.example.cryptoapp.toolchain.mvvmbase.BaseFragment
@@ -41,6 +42,10 @@ class HomeActivity : BaseFragmentActivity<HomeSharedViewModel>(),
         sharedViewModel.eventNavigateToDetailCoin.observe(this, Observer {
             fragNavController.clearStack()
             pushFragment(CurrencyDetailFragment.newInstance(it))
+        })
+        sharedViewModel.eventNavigateToArticle.observe(this, Observer {
+            fragNavController.clearStack()
+            pushFragment(ArticleFragment.newInstance(it))
         })
     }
 
