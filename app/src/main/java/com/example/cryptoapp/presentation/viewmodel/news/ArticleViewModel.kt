@@ -7,6 +7,13 @@ import com.example.cryptoapp.toolchain.mvvmbase.BaseViewModel
 class ArticleViewModel : BaseViewModel() {
     val article: MutableLiveData<News> = MutableLiveData()
 
+    private fun getNews() {
+//        disposables.add(
+//
+//        )
+    }
+
+
 
 
 }

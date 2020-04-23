@@ -6,7 +6,7 @@ import com.example.cryptoapp.presentation.App
 import io.reactivex.Completable
 import io.reactivex.Flowable
 
-object CachedDataRepository {
+object CachedRateRepository {
     private val db = AppDatabase.getInstance(App.context)
 
     fun getDetailInfoForCurrency(fromSymbol: String): Flowable<CoinPriceInfo> {

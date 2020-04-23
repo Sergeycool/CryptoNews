@@ -4,13 +4,18 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.example.cryptoapp.data.DataConstants
 import com.example.cryptoapp.data.database.dao.CoinPriceInfoDao
+import com.example.cryptoapp.data.database.dao.NewsDao
+import com.example.cryptoapp.data.database.typeconverter.Converters
 import com.example.cryptoapp.data.model.CoinPriceInfo
+import com.example.cryptoapp.data.model.News
 
-@Database(entities = [CoinPriceInfo::class],
+@Database(entities = [CoinPriceInfo::class, News::class],
           version = DataConstants.DATABASE_VERSION,
           exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     companion object {
 
@@ -34,4 +39,6 @@ abstract class AppDatabase : RoomDatabase() {
     }
 
     abstract fun coinPriceInfoDao(): CoinPriceInfoDao
+
+    abstract fun newsDao(): NewsDao
 }
