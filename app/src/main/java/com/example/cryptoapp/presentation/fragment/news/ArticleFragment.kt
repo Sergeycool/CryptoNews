@@ -29,18 +29,21 @@ class ArticleFragment : BaseFragment<ArticleViewModel, HomeSharedViewModel>() {
         super.onActivityCreated(savedInstanceState)
 
         tvAuthorNews.text = news?.sourceInfo?.sourceName
-        Picasso.get().load(news?.sourceInfo?.sourceImage).into(ivAuthorLogo)
+        news?.sourceInfo?.sourceImage?.let {
+            if (it.isNotBlank())
+                Picasso.get()
+                    .load(it)
+                    .into(ivAuthorLogo)
+        }
+
         tvTimeAgo.text = convertTimestampToTime(news?.publishedTime)
         tvTitle.text = news?.title
         tvBodyArticleText.text = news?.textArticle
-
-        val v = getViewHeightPx(ivPoster)
 
         Picasso.get()
             .load(news?.imageUrl)
             .resize(getScreenWidth(), getViewHeightPx(ivPoster))
             .into(ivPoster)
-
     }
 
     companion object {

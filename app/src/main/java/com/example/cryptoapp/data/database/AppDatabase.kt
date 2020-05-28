@@ -21,7 +21,8 @@ abstract class AppDatabase : RoomDatabase() {
 
         private var db: AppDatabase? = null
         private const val DB_NAME = DataConstants.DATABASE_NAME
-        private val LOCK = Any()
+        @Volatile
+        private var LOCK = Any()
 
         fun getInstance(context: Context): AppDatabase {
             synchronized(LOCK) {

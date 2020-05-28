@@ -1,6 +1,5 @@
 package com.example.cryptoapp.presentation.viewmodel.news
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.cryptoapp.data.model.News
 import com.example.cryptoapp.domain.usecase.GetAllNewsUseCase
@@ -13,18 +12,17 @@ import io.reactivex.schedulers.Schedulers
 class NewsListViewModel : BaseViewModel() {
 
     init {
-        getCachedNews()
+//        getCachedNews()
         updateNews()
     }
 
     val newsList: MutableLiveData<List<News>> = MutableLiveData()
 
-
     private fun getCachedNews() {
         disposables.add(GetCashedNewsUseCase().execute()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe{ newsList.value = it })
+            .subscribe { newsList.value = it })
     }
 
     private fun updateNews() {
@@ -32,17 +30,16 @@ class NewsListViewModel : BaseViewModel() {
             GetAllNewsUseCase().execute()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
+                .subscribe {
                     if (it.result != null) {
                         newsList.value = it.result.data
-                        it.result.data?.let { newsResult -> saveUpdatedData(newsResult) }
-                    }
-
-                }, { Log.d(TAG, "Failure: ${it.message}") })
-        )
+                        it.result.data?.let { newsResult -> updateNewsCache(newsResult) }
+                    } else if (it.hasError())
+                        getCachedNews()
+                })
     }
 
-    private fun saveUpdatedData(newsList: List<News>) {
+    private fun updateNewsCache(newsList: List<News>) {
         InsertNewsUseCase().execute(newsList)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

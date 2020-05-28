@@ -27,17 +27,15 @@ class CurrencyListViewModel : BaseViewModel() {
                 .retry()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
+                .subscribe{
                     if (it.isCompleteWithoutError()) {
                         it.result?.let { priceList ->
                             coinDataList.value = priceList
                             saveUpdatedData(priceList)
                         }
-                    }
-                }, {
-                    Log.d(TAG, "Failure: ${it.message}")
+                    } else if (it.hasError())
+                        getCachedPriceList()
                 })
-        )
     }
 
     private fun saveUpdatedData(priceListInfo: List<CoinPriceInfo>) {
