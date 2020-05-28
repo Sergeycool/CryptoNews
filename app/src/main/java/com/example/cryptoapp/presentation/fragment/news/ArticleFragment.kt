@@ -6,8 +6,8 @@ import com.example.cryptoapp.data.model.News
 import com.example.cryptoapp.presentation.UiConstants.ARGUMENT_NEWS
 import com.example.cryptoapp.presentation.viewmodel.home.HomeSharedViewModel
 import com.example.cryptoapp.presentation.viewmodel.news.ArticleViewModel
-import com.example.cryptoapp.toolchain.convertTimestampToTime
 import com.example.cryptoapp.toolchain.getScreenWidth
+import com.example.cryptoapp.toolchain.getTimeDifference
 import com.example.cryptoapp.toolchain.getViewHeightPx
 import com.example.cryptoapp.toolchain.mvvmbase.BaseFragment
 import com.squareup.picasso.Picasso
@@ -36,7 +36,7 @@ class ArticleFragment : BaseFragment<ArticleViewModel, HomeSharedViewModel>() {
                     .into(ivAuthorLogo)
         }
 
-        tvTimeAgo.text = convertTimestampToTime(news?.publishedTime)
+        tvTimeAgo.text = getTimeDifference(news?.publishedTime)
         tvTitle.text = news?.title
         tvBodyArticleText.text = news?.textArticle
 

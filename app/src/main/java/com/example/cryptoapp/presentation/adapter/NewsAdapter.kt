@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cryptoapp.R
 import com.example.cryptoapp.data.model.News
-import com.example.cryptoapp.toolchain.convertTimestampToTime
+import com.example.cryptoapp.toolchain.getTimeDifference
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_news.view.*
 
@@ -35,7 +35,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
         with(holder) {
             with(news) {
                 tvTitle.text = title
-                tvPublishedDate.text = convertTimestampToTime(publishedTime)
+                tvPublishedDate.text = getTimeDifference(publishedTime)
                 Picasso.get().load(imageUrl).into(ivArticleImage)
                 itemView.setOnClickListener {
                     onNewsClickListener?.onNewsClick(this)

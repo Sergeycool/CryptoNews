@@ -17,10 +17,10 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary"
+        android:background="@android:color/black"
         app:bb_activeTabAlpha="1"
-        app:bb_activeTabColor="#FFFFFF"
-        app:bb_inActiveTabAlpha="0.4"
-        app:bb_inActiveTabColor="#FFFFFF"
+        app:bb_activeTabColor="@android:color/holo_orange_light"
+        app:bb_inActiveTabAlpha="0.5"
+        app:bb_inActiveTabColor="@android:color/holo_orange_light"
         app:bb_tabXmlResource="@xml/bottom_nav_menu"/>
 </RelativeLayout>

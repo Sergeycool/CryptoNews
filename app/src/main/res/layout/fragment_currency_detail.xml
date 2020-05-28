@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.activity.CoinDetailActivity">
+    tools:context=".presentation.activity.HomeActivity">
 
     <ImageView
         android:id="@+id/ivLogoCoin"
@@ -133,7 +133,7 @@
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
                 android:text="@string/max_price_label"
-                android:textColor="#000"
+                android:textColor="@android:color/black"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvMinPriceLabel" />
@@ -176,7 +176,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
-                android:textColor="#000"
+                android:textColor="@android:color/black"
                 android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="@id/tvLastMarketLabel"
                 app:layout_constraintTop_toBottomOf="@id/tvMaxPriceLabel"
@@ -197,7 +197,7 @@
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
                 android:text="@string/last_updated_label"
-                android:textColor="#000"
+                android:textColor="@android:color/black"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvLastMarketLabel" />
@@ -208,7 +208,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
-                android:textColor="#000"
+                android:textColor="@android:color/black"
                 android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="@id/tvLastUpdateLabel"
                 app:layout_constraintTop_toBottomOf="@id/tvLastMarket"
