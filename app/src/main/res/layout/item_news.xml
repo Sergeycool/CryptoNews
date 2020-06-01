@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="10dp"
-    app:cardUseCompatPadding="true">
+    android:layout_margin="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -18,7 +18,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@android:drawable/ic_menu_mapmode" />
+            tools:src="@android:drawable/ic_menu_mapmode"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/tvTitleNews"
@@ -29,28 +30,31 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="4dp"
             android:maxLines="3"
+            android:ellipsize="end"
             android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/tvNewsPublishedTime"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/imageArticle"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
             tools:text="A veeeeeeeeeeery laaarge article about new computing algorithms" />
 
         <TextView
             android:id="@+id/tvNewsPublishedTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="193dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:textStyle="italic"
             android:textSize="12sp"
-            tools:text="01.01.1970"
+            android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageArticle"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleNews"
+            tools:text="5 minutes ago" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

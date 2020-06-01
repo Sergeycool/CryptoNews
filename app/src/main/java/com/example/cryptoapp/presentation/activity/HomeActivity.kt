@@ -40,12 +40,13 @@ class HomeActivity : BaseFragmentActivity<HomeSharedViewModel>(),
         bottomBar = findViewById(R.id.bottom_bar)
         initFragmentNavigation()
         sharedViewModel.eventNavigateToDetailCoin.observe(this, Observer {
-            fragNavController.clearStack()
             pushFragment(CurrencyDetailFragment.newInstance(it))
         })
         sharedViewModel.eventNavigateToArticle.observe(this, Observer {
-            fragNavController.clearStack()
             pushFragment(ArticleFragment.newInstance(it))
+        })
+        sharedViewModel.eventNavigateToArticle.observe (this, Observer {
+//            pushFragment()
         })
     }
 
@@ -94,6 +95,7 @@ class HomeActivity : BaseFragmentActivity<HomeSharedViewModel>(),
     }
 
     override fun pushFragment(fragment: Fragment, sharedElementList: List<Pair<View, String>>?) {
+        fragNavController.clearStack()
         val options = FragNavTransactionOptions.newBuilder()
         sharedElementList?.let {
             it.forEach { pair ->

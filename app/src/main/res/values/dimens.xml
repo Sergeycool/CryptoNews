@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Width-->
+
+    <!--Height-->
+    <dimen name="height_all_top_bar">56dp</dimen>
+    <dimen name="height_all_bottom_bar">56dp</dimen>
+    <dimen name="height_all_button">48dp</dimen>
+    <dimen name="height_all_bottom_navigation">@dimen/height_all_button</dimen>
+    <dimen name="height_all_bottom_navigation_selection">65dp</dimen>
+    <dimen name="height_all_radiobutton">40dp</dimen>
+    <dimen name="height_all_edit_text">48dp</dimen>
+    <dimen name="height_all_progress_button_progress_bar">22dp</dimen>
+    <dimen name="height_all_progress_bar">32dp</dimen>
+    <dimen name="height_fragment_album_image_send_comment_layout">76dp</dimen>
+    <dimen name="height_all_fcm_badge_large">20dp</dimen>
+    <dimen name="height_all_fcm_badge_small">16dp</dimen>
+
+    <!--Size-->
+    <dimen name="size_all_image_top_bar">18dp</dimen>
+    <dimen name="size_all_edit_text_search_image">18dp</dimen>
+    <dimen name="size_all_checkbox">22dp</dimen>
+    <dimen name="size_all_avatar_image">150dp</dimen>
+    <dimen name="size_all_image_add_avatar">24dp</dimen>
+    <dimen name="size_all_image_contact_selected">24dp</dimen>
+    <dimen name="size_all_button_image">24dp</dimen>
+    <dimen name="size_all_shadow">14dp</dimen>
+    <dimen name="size_fragment_profile_button_image">28dp</dimen>
+    <dimen name="size_all_contact_avatar">48dp</dimen>
+    <dimen name="size_fragment_contacts_progress_circle">48dp</dimen>
+    <dimen name="size_all_select_indicator">20dp</dimen>
+    <dimen name="size_item_album_icon_count">14dp</dimen>
+    <dimen name="size_fragment_new_album_image_privacy">60dp</dimen>
+    <dimen name="size_all_album_author_avatar">38dp</dimen>
+    <dimen name="size_fragment_album_all_image">20dp</dimen>
+    <!--size_fragment_album_radio_button_drawable = size_fragment_album_all_image + 2 * padding_fragment_album_radio_button_drawable-->
+    <dimen name="size_fragment_album_radio_button_drawable">50dp</dimen>
+    <dimen name="size_fragment_album_image_picture_author_avatar">48dp</dimen>
+    <dimen name="size_fragment_album_image_action_image">30dp</dimen>
+    <dimen name="size_fragment_album_image_statistic_image">22dp</dimen>
+    <dimen name="size_item_album_picture_list_mode_statistic_image">14dp</dimen>
+    <dimen name="size_item_album_picture_list_mode_picture_author_avatar">48dp</dimen>
+    <dimen name="size_item_album_picture_list_mode_reaction_image">28dp</dimen>
+    <dimen name="size_item_album_picture_spanned_mode_statistic_image">12dp</dimen>
+    <dimen name="size_item_comment_avatar">42dp</dimen>
+    <dimen name="size_item_album_user_user_avatar">38dp</dimen>
+    <dimen name="size_item_album_shadow">11dp</dimen>
+    <dimen name="size_item_news_notification_image_right">56dp</dimen>
+
+    <!--Thickness-->
+    <dimen name="thickness_all_edit_text_cursor">2dp</dimen>
+    <dimen name="thickness_all_edit_text_underline">1.5dp</dimen>
+    <dimen name="thickness_all_edit_text_border">1.5dp</dimen>
+    <dimen name="thickness_all_separator_line">1dp</dimen>
+    <dimen name="thickness_all_recycler_divider">1dp</dimen>
+    <dimen name="thickness_all_button_border">1dp</dimen>
+    <dimen name="thickness_all_circle_image_border">1dp</dimen>
+    <dimen name="thickness_profile_circle_image_border">3dp</dimen>
+
+    <!--Radius-->
+    <dimen name="radius_all_dialog_corner">10dp</dimen>
+    <dimen name="radius_all_view_pager_indicator">4dp</dimen>
+    <dimen name="radius_all_button_corner">24dp</dimen>
+    <dimen name="radius_all_bottom_navigation_corner">@dimen/radius_all_button_corner</dimen>
+    <dimen name="radius_all_edit_text_corner">24dp</dimen>
+    <!--0.5 * size_all_avatar_image-->
+    <dimen name="radius_all_image_avatar">75dp</dimen>
+    <!--0.5 * size_all_contact_avatar-->
+    <dimen name="radius_all_image_contact_avatar">24dp</dimen>
+    <dimen name="radius_all_album_image_corner">15dp</dimen>
+    <!--radius_all_album_corner - 3-->
+    <dimen name="radius_all_album_border_corner">12dp</dimen>
+    <dimen name="radius_item_news_notification_image_corner">7dp</dimen>
+    <!--0.5 * height_all_fcm_badge_large-->
+    <dimen name="radius_all_fcm_badge_large">10dp</dimen>
+    <!--0.5 * height_all_fcm_badge_small-->
+    <dimen name="radius_all_fcm_badge_small">8dp</dimen>
+
+    <!--Angle-->
+    <integer name="angle_all_image_add_avatar">135</integer>
+    <integer name="angle_all_image_contact_selected">135</integer>
+
+    <!--Padding-->
+    <dimen name="padding_all_general_extra_tiny">2dp</dimen>
+    <dimen name="padding_all_general_tiny">4dp</dimen>
+    <dimen name="padding_all_general_small">8dp</dimen>
+    <dimen name="padding_all_general">16dp</dimen>
+    <dimen name="padding_all_general_large">32dp</dimen>
+    <dimen name="padding_all_general_huge">64dp</dimen>
+
+    <dimen name="padding_all_bottom_navigation_drawable">15dp</dimen>
+    <dimen name="padding_fragment_home_root_pager_navigation_news_drawable">13dp</dimen>
+
+    <dimen name="padding_fragment_album_radio_button_drawable">15dp</dimen>
+
+    <dimen name="padding_fragment_settings_item">12dp</dimen>
+
+    <dimen name="padding_bottom_all_fragment_recycler">100dp</dimen>
+
+    <dimen name="padding_all_dialog_edit_text">4dp</dimen>
+    <dimen name="padding_all_dialog_button">12dp</dimen>
+
+    <dimen name="padding_item_search_edit_text">5dp</dimen>
+
+    <dimen name="padding_item_news_notification">12dp</dimen>
+
+    <!--Margin-->
+    <dimen name="margin_all_general_extra_tiny">2dp</dimen>
+    <dimen name="margin_all_general_tiny">4dp</dimen>
+    <dimen name="margin_all_general_small">8dp</dimen>
+    <dimen name="margin_all_general">16dp</dimen>
+    <dimen name="margin_all_general_large">32dp</dimen>
+    <dimen name="margin_all_general_huge">64dp</dimen>
+
+    <dimen name="margin_end_album_list_arrow">24dp</dimen>
+
+    <dimen name="margin_top_fragment_news_fcm_badge">18dp</dimen>
+
+    <dimen name="margin_horizontal_all_bottom_navigation">42dp</dimen>
+
+    <dimen name="margin_horizontal_all_dialog_window">48dp</dimen>
+
+    <dimen name="margin_item_news_notifications_album_border">6dp</dimen>
+
+    <!--Font-->
+    <dimen name="font_all_large">26sp</dimen>
+    <dimen name="font_all_title">20sp</dimen>
+    <dimen name="font_all_normal">16sp</dimen>
+    <dimen name="font_all_small">12sp</dimen>
+    <dimen name="font_all_medium">14sp</dimen>
+    <dimen name="font_all_tiny">10sp</dimen>
+    <dimen name="font_abbr_huge">56sp</dimen>
+    <dimen name="font_abbr_small">16sp</dimen>
+    <dimen name="font_abbr_medium">20sp</dimen>
+
+    <dimen name="font_all_edit_text">@dimen/font_all_normal</dimen>
+    <dimen name="font_item_select_country">14sp</dimen>
+
+    <!--Elevation-->
+    <dimen name="elevation_all_bottom_navigation">4dp</dimen>
+    <dimen name="elevation_all_large">15dp</dimen>
+
+    <!--RecyclerView spacing-->
+    <dimen name="spacing_item_select_image_to_album">4dp</dimen>
+    <dimen name="spacing_item_comment">1dp</dimen>
+
+    <!--Other-->
+    <integer name="duration_all_animation_transition">400</integer>
+    <integer name="duration_fragment_contacts_animation_transition">1200</integer>
+</resources>

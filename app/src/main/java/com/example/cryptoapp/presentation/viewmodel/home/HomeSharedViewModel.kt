@@ -8,6 +8,7 @@ class HomeSharedViewModel : BaseViewModel() {
 
     val eventNavigateToDetailCoin: SingleLiveEvent<String> = SingleLiveEvent()
     val eventNavigateToArticle: SingleLiveEvent<News> = SingleLiveEvent()
+    val eventNavigateToWebViewArticle: SingleLiveEvent<String> = SingleLiveEvent()
 
     fun navigateToDetailCoin(fromSymbol: String) {
         eventNavigateToDetailCoin.value = fromSymbol
@@ -15,6 +16,10 @@ class HomeSharedViewModel : BaseViewModel() {
 
     fun navigateToArticle(news: News) {
         eventNavigateToArticle.value = news
+    }
+
+    fun navigateToWebView(sourceUrl: String) {
+        eventNavigateToWebViewArticle.value = sourceUrl
     }
 
 }

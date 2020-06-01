@@ -18,8 +18,12 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
+            android:layout_marginBottom="16dp"
+            android:textColor="@android:color/black"
             android:textSize="20sp"
+            android:gravity="center"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tvBodyArticleText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivAuthorLogo"
@@ -71,22 +75,26 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
             android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnReadMore"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTitle"
             tools:text="@string/test_text" />
 
-        <ImageButton
+        <TextView
             android:id="@+id/btnReadMore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
-            android:src="@android:drawable/ic_menu_more"
+            android:background="@drawable/selector_black_button"
+            android:text="read more"
+            android:padding="@dimen/padding_all_general_small"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -94,5 +102,4 @@
             tools:ignore="ContentDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </ScrollView>

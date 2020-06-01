@@ -1,6 +1,7 @@
 package com.example.cryptoapp.presentation.fragment.news
 
 import android.os.Bundle
+import android.widget.Toast
 import com.example.cryptoapp.R
 import com.example.cryptoapp.data.model.News
 import com.example.cryptoapp.presentation.UiConstants.ARGUMENT_NEWS
@@ -30,20 +31,24 @@ class ArticleFragment : BaseFragment<ArticleViewModel, HomeSharedViewModel>() {
 
         tvAuthorNews.text = news?.sourceInfo?.sourceName
         news?.sourceInfo?.sourceImage?.let {
-            if (it.isNotBlank())
+            if (it.isNotEmpty())
                 Picasso.get()
                     .load(it)
                     .into(ivAuthorLogo)
         }
-
         tvTimeAgo.text = getTimeDifference(news?.publishedTime)
         tvTitle.text = news?.title
         tvBodyArticleText.text = news?.textArticle
-
         Picasso.get()
             .load(news?.imageUrl)
             .resize(getScreenWidth(), getViewHeightPx(ivPoster))
             .into(ivPoster)
+
+        btnReadMore.setOnClickListener {
+            Toast.makeText(context, "read more clicked", Toast.LENGTH_SHORT).show()
+            news?.sourceUrl?.let { url -> sharedViewModel.navigateToWebView(url) }
+        }
+
     }
 
     companion object {
