@@ -7,9 +7,7 @@ import com.example.cryptoapp.data.model.News
 import com.example.cryptoapp.presentation.UiConstants.ARGUMENT_NEWS
 import com.example.cryptoapp.presentation.viewmodel.home.HomeSharedViewModel
 import com.example.cryptoapp.presentation.viewmodel.news.ArticleViewModel
-import com.example.cryptoapp.toolchain.getScreenWidth
 import com.example.cryptoapp.toolchain.getTimeDifference
-import com.example.cryptoapp.toolchain.getViewHeightPx
 import com.example.cryptoapp.toolchain.mvvmbase.BaseFragment
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_article.*
@@ -41,7 +39,6 @@ class ArticleFragment : BaseFragment<ArticleViewModel, HomeSharedViewModel>() {
         tvBodyArticleText.text = news?.textArticle
         Picasso.get()
             .load(news?.imageUrl)
-            .resize(getScreenWidth(), getViewHeightPx(ivPoster))
             .into(ivPoster)
 
         btnReadMore.setOnClickListener {
