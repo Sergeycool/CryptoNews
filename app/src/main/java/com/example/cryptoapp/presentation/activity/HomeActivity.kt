@@ -14,6 +14,7 @@ import com.example.cryptoapp.presentation.fragment.home.CurrencyDetailFragment
 import com.example.cryptoapp.presentation.fragment.home.CurrencyListFragment
 import com.example.cryptoapp.presentation.fragment.news.ArticleFragment
 import com.example.cryptoapp.presentation.fragment.news.NewsFragment
+import com.example.cryptoapp.presentation.fragment.news.WebFragment
 import com.example.cryptoapp.presentation.viewmodel.home.HomeSharedViewModel
 import com.example.cryptoapp.toolchain.mvvmbase.BaseFragment
 import com.example.cryptoapp.toolchain.mvvmbase.BaseFragmentActivity
@@ -45,8 +46,8 @@ class HomeActivity : BaseFragmentActivity<HomeSharedViewModel>(),
         sharedViewModel.eventNavigateToArticle.observe(this, Observer {
             pushFragment(ArticleFragment.newInstance(it))
         })
-        sharedViewModel.eventNavigateToArticle.observe (this, Observer {
-//            pushFragment()
+        sharedViewModel.eventNavigateToWebViewArticle.observe (this, Observer {
+            pushFragment(WebFragment.newInstance(it))
         })
     }
 

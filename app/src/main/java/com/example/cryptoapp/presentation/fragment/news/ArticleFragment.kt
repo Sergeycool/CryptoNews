@@ -1,7 +1,6 @@
 package com.example.cryptoapp.presentation.fragment.news
 
 import android.os.Bundle
-import android.widget.Toast
 import com.example.cryptoapp.R
 import com.example.cryptoapp.data.model.News
 import com.example.cryptoapp.presentation.UiConstants.ARGUMENT_NEWS
@@ -42,7 +41,6 @@ class ArticleFragment : BaseFragment<ArticleViewModel, HomeSharedViewModel>() {
             .into(ivPoster)
 
         btnReadMore.setOnClickListener {
-            Toast.makeText(context, "read more clicked", Toast.LENGTH_SHORT).show()
             news?.sourceUrl?.let { url -> sharedViewModel.navigateToWebView(url) }
         }
 
