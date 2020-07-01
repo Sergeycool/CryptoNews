@@ -4,14 +4,14 @@
     <tab
         icon="@drawable/ic_bar_graph_currency"
         id="@+id/navigation_home"
-        title="Rates" />
+        title="@string/bottom_navigation_rate_item" />
     <tab
         icon="@drawable/ic_bar_news"
         id="@+id/navigation_news"
-        title="News" />
+        title="@string/bottom_navigation_news_item" />
     <tab
         icon="@drawable/ic_bar_settings"
         id="@+id/navigation_settings"
-        title="Setting" />
+        title="@string/bottom_navigation_settings_item" />
 
 </tabs>

@@ -1,19 +1,66 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="fontFamily">@font/noto_sans_spec</item>
+        <item name="android:textSize">@dimen/font_all_normal</item>
+
+        <item name="android:textColor">@color/all_default_text</item>
+        <item name="android:editTextColor">@color/all_default_text</item>
+        <item name="android:textColorPrimary">@color/all_default_text</item>
+        <item name="android:textColorSecondary">@color/all_default_text</item>
+        <item name="android:textColorTertiary">@color/all_default_text</item>
+        <item name="android:textColorPrimaryInverse">@color/all_default_text</item>
+        <item name="android:textColorSecondaryInverse">@color/all_default_text</item>
+        <item name="android:textColorTertiaryInverse">@color/all_default_text</item>
+
+        <item name="android:windowBackground">@color/all_background</item>
     </style>
 
     <style name="CryptoNewsBottomNav">
-<!--        <item name="itemIconTint">@android:color/white</item>-->
-<!--        <item name="menu">@menu/bottom_nav_menu</item>-->
-<!--        <item name="itemBackground">@color/colorPrimary </item>-->
-<!--        TODO selector-->
-        <!--        TODO background with rounded top corners-->
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/height_bottom_navigation_bar</item>
+        <item name="android:layout_alignParentBottom">true</item>
+    </style>
+
+    <style name="Title">
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/font_all_title</item>
+    </style>
+
+    <style name="Title.Collapsed">
+        <item name="android:gravity">start</item>
+        <item name="android:maxLines">3</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="Title.Large">
+        <item name="android:textSize">@dimen/font_all_large</item>
+    </style>
+
+    <style name="CardViewItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="cardBackgroundColor">@color/gray_very_light</item>
+        <item name="cardCornerRadius">@dimen/elevation_all_card_view</item>
+        <item name="cardElevation">@dimen/radius_all_card_view_corner</item>
+        <item name="android:layout_margin">@dimen/margin_all_general_small</item>
+    </style>
+    
+    <style name="Separator">
+<!--        <item name="background">@color/gray_dark</item>-->
+        <item name="android:layout_height">@dimen/thickness_separator_height</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="Separator.DetailCurrency">
+        <item name="android:layout_marginTop">@dimen/margin_all_general_small</item>
     </style>
 
 

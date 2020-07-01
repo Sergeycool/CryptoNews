@@ -2,13 +2,13 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_enabled="false">
         <shape>
-            <stroke android:width="@dimen/thickness_all_button_border" android:color="@color/yellow" />
+            <stroke android:width="@dimen/thickness_all_button_border" android:color="@color/light_yellow" />
             <corners android:radius="@dimen/radius_all_button_corner" />
         </shape>
     </item>
     <item android:state_pressed="true">
         <shape>
-            <stroke android:width="@dimen/thickness_all_button_border" android:color="@color/yellow" />
+            <stroke android:width="@dimen/thickness_all_button_border" android:color="@color/light_yellow" />
             <corners android:radius="@dimen/radius_all_button_corner" />
         </shape>
     </item>

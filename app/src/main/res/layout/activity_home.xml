@@ -14,13 +14,12 @@
 
     <com.roughike.bottombar.BottomBar
         android:id="@+id/bottom_bar"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_alignParentBottom="true"
+        style="@style/CryptoNewsBottomNav"
         android:background="@android:color/black"
         app:bb_activeTabAlpha="1"
-        app:bb_activeTabColor="@color/yellow"
+        app:bb_activeTabColor="@color/light_yellow"
         app:bb_inActiveTabAlpha="0.5"
-        app:bb_inActiveTabColor="@color/yellow"
+        app:bb_inActiveTabColor="@color/light_yellow"
+        app:bb_behavior="shifting"
         app:bb_tabXmlResource="@xml/bottom_nav_menu"/>
 </RelativeLayout>

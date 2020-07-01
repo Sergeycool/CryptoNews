@@ -2,10 +2,8 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="10dp"
-    android:layout_margin="8dp">
+    android:layout_height="@dimen/size_card_view_news_item"
+    style="@style/CardViewItem">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -13,28 +11,23 @@
 
         <ImageView
             android:id="@+id/imageArticle"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="@dimen/size_card_view_news_item"
+            android:layout_height="@dimen/size_card_view_news_item"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@android:drawable/ic_menu_mapmode"
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription"
+            tools:src="@android:drawable/ic_menu_mapmode" />
 
         <TextView
             android:id="@+id/tvTitleNews"
+            style="@style/Title.Collapsed"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="4dp"
-            android:maxLines="3"
-            android:ellipsize="end"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/tvNewsPublishedTime"
+            android:layout_marginStart="@dimen/margin_all_general"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="@dimen/margin_all_general"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageArticle"
             app:layout_constraintTop_toTopOf="parent"
@@ -44,14 +37,13 @@
             android:id="@+id/tvNewsPublishedTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:textSize="12sp"
+            android:layout_marginTop="@dimen/margin_all_general_small"
+            android:layout_marginEnd="@dimen/padding_all_general"
+            android:textSize="@dimen/font_all_small"
             android:textStyle="italic"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTitleNews"
+            app:layout_constraintVertical_bias="0.0"
             tools:text="5 minutes ago" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

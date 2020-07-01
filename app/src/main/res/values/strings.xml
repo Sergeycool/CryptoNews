@@ -21,4 +21,8 @@
     <string name="all_time_ago_minutes">%1$d minutes ago</string>
     <string name="all_time_ago_hours">%1$d hours ago</string>
     <string name="all_time_ago_days">%1$d days ago</string>
+    <string name="fragment_article_read_more_button">read more</string>
+    <string name="bottom_navigation_rate_item">Rates</string>
+    <string name="bottom_navigation_news_item">News</string>
+    <string name="bottom_navigation_settings_item">Settings</string>
 </resources>

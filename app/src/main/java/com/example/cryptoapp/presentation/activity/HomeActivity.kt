@@ -35,9 +35,10 @@ class HomeActivity : BaseFragmentActivity<HomeSharedViewModel>(),
     private lateinit var bottomBar: BottomBar
     override val numberOfRootFragments: Int = 2
 
+    override fun getLayoutRes(): Int = R.layout.activity_home
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
         bottomBar = findViewById(R.id.bottom_bar)
         initFragmentNavigation()
         sharedViewModel.eventNavigateToDetailCoin.observe(this, Observer {
